@@ -1,0 +1,8 @@
+node_modules
+.idea
+dist
+docs/.temp
+docs/build
+/src/node/__test__/__snapshots__/
+vendors
+docs
