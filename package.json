@@ -29,6 +29,7 @@
     "@loadable/component": "^5.15.3",
     "@playwright/test": "1.26.1",
     "@types/fs-extra": "^11.0.2",
+    "@types/hast": "^3.0.2",
     "@types/node": "^20.8.7",
     "@types/react": "^18.2.29",
     "@types/react-dom": "^18.2.13",
@@ -44,10 +45,14 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.0.1",
     "prettier": "^3.0.3",
+    "rehype-stringify": "^10.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.0.0",
     "rollup": "^4.1.4",
     "tsup": "^7.2.0",
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
+    "unist-util-visit": "^5.0.0",
     "vitest": "^0.34.6"
   },
   "dependencies": {
@@ -64,6 +69,7 @@
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "3",
     "remark-mdx-frontmatter": "^3.0.0",
+    "unified": "^11.0.3",
     "vite": "^4.5.0"
   }
 }

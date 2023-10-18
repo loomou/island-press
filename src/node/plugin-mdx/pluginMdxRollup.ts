@@ -5,8 +5,9 @@ import rehypePluginAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePluginSlug from 'rehype-slug';
 import remarkPluginMDXFrontMatter from 'remark-mdx-frontmatter';
 import remarkPluginFrontmatter from 'remark-frontmatter';
+import { rehypePluginPreWrapper } from './rehypePlugins/rehypePluginPreWrapper';
 
-export async function pluginMdxRollup() {
+export async function pluginMdxRollup(): Promise<Plugin> {
   return pluginMdx({
     remarkPlugins: [
       remarkPluginGFM,
@@ -26,7 +27,8 @@ export async function pluginMdxRollup() {
             value: '#'
           }
         }
-      ]
+      ],
+      rehypePluginPreWrapper
     ]
   }) as unknown as Plugin;
 }
