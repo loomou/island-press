@@ -6,7 +6,7 @@ import { build } from './build';
 
 const version = require('../../package.json').version;
 
-const cli = cac('island').version('0.0.1').help();
+const cli = cac('island').version(version).help();
 
 cli
   .command('[root]', 'start dev server')
