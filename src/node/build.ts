@@ -1,13 +1,12 @@
 import { build as viteBuild } from 'vite';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
-import pluginReact from '@vitejs/plugin-react';
 import { join } from 'path';
 import { pathToFileURL } from 'url';
 import fs from 'fs-extra';
 import type { InlineConfig } from 'vite';
 import type { RollupOutput } from 'rollup';
 import { SiteConfig } from '../shared/types';
-import { pluginConfig } from './plugin-island/config';
+import { createVitePlugins } from './vitePlugins';
 
 export async function build(root: string = process.cwd(), config: SiteConfig) {
   const [clientBundle] = await bundle(root, config);
@@ -24,7 +23,7 @@ export async function bundle(root: string, config: SiteConfig) {
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
     mode: 'production',
     root,
-    plugins: [pluginReact(), pluginConfig(config)],
+    plugins: createVitePlugins(config),
     ssr: {
       noExternal: ['react-router-dom']
     },
