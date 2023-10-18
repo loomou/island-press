@@ -11,7 +11,7 @@ export async function createDevServer(
   console.log(config);
   return createViteDevServer({
     root,
-    plugins: createVitePlugins(config, restartServer),
+    plugins: await createVitePlugins(config, restartServer),
     server: {
       fs: {
         allow: [PACKAGE_ROOT]

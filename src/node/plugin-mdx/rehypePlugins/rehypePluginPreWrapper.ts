@@ -14,15 +14,18 @@ export const rehypePluginPreWrapper = () => {
         const codeClassName = codeNode.properties?.className?.toString() || '';
         const lang = codeClassName.split('-')[1];
 
-        codeNode.properties.className = '';
-
         const clonedNode: Element = {
           properties: undefined,
           type: 'element',
           tagName: 'pre',
           children: node.children,
           data: {
-            isVisited: true
+            isVisited: true,
+            position: {
+              opening: undefined,
+              closing: undefined,
+              properties: undefined
+            }
           }
         };
 
