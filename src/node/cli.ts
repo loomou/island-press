@@ -3,7 +3,6 @@ import { createDevServer } from './dev';
 import { resolve } from 'path';
 import { build } from './build';
 
-
 const version = require('../../package.json').version;
 
 const cli = cac('island').version(version).help();
