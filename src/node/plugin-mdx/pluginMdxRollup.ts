@@ -10,7 +10,7 @@ import { rehypePluginShiki } from './rehypePlugins/rehypePluginShiki';
 import { remarkPluginToc } from './remarkPlugins/remarkPluginToc';
 import shiki from 'shiki';
 
-export async function pluginMdxRollup(): Promise<Plugin> {
+export async function pluginMdxRollup(mdxHMR = false): Promise<Plugin> {
   return {
     enforce: 'pre',
     ...pluginMdx({
@@ -41,7 +41,7 @@ export async function pluginMdxRollup(): Promise<Plugin> {
         ]
       ],
       jsxRuntime: 'automatic',
-      development: true
+      development: mdxHMR
     })
   } as unknown as Plugin;
 }
