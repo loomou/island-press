@@ -1,7 +1,9 @@
 import { normalizePath, Plugin } from 'vite';
 import { SiteConfig } from 'shared/types';
 import { relative, join } from 'path';
-import { PACKAGE_ROOT } from '../constants';
+import fs from 'fs-extra';
+import sirv from 'sirv';
+import { PACKAGE_ROOT, PUBLIC_DIR } from '../constants';
 
 const SITE_DATA_ID = 'island:site-data';
 
@@ -19,6 +21,12 @@ export function pluginConfig(
     load(id) {
       if (id === '\0' + SITE_DATA_ID) {
         return `export default ${JSON.stringify(config.siteData)}`;
+      }
+    },
+    configureServer(server) {
+      const publicDir = join(config.root, PUBLIC_DIR);
+      if (fs.pathExistsSync(publicDir)) {
+        server.middlewares.use(sirv(publicDir));
       }
     },
     async handleHotUpdate(ctx) {
