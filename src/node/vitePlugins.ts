@@ -10,14 +10,15 @@ export async function createVitePlugins(
   restartServer?: () => Promise<void>
 ) {
   return [
+    await createPluginMdx(),
     pluginIndexHtml(),
     pluginReact({
-      jsxRuntime: 'automatic'
+      jsxRuntime: 'automatic',
+      include: /\.(mdx|js|jsx|ts|tsx)$/
     }),
     pluginConfig(config, restartServer),
     pluginRoutes({
       root: config.root
-    }),
-    await createPluginMdx()
+    })
   ];
 }

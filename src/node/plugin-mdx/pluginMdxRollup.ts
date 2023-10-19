@@ -11,32 +11,37 @@ import { remarkPluginToc } from './remarkPlugins/remarkPluginToc';
 import shiki from 'shiki';
 
 export async function pluginMdxRollup(): Promise<Plugin> {
-  return pluginMdx({
-    remarkPlugins: [
-      remarkPluginGFM,
-      remarkPluginFrontmatter,
-      [remarkPluginMDXFrontMatter, { name: 'frontmatter' }],
-      remarkPluginToc
-    ],
-    rehypePlugins: [
-      rehypePluginSlug,
-      [
-        rehypePluginAutolinkHeadings,
-        {
-          properties: {
-            class: 'header-anchor'
-          },
-          content: {
-            type: 'text',
-            value: '#'
-          }
-        }
+  return {
+    enforce: 'pre',
+    ...pluginMdx({
+      remarkPlugins: [
+        remarkPluginGFM,
+        remarkPluginFrontmatter,
+        [remarkPluginMDXFrontMatter, { name: 'frontmatter' }],
+        remarkPluginToc
       ],
-      rehypePluginPreWrapper,
-      [
-        rehypePluginShiki,
-        { highlighter: await shiki.getHighlighter({ theme: 'nord' }) }
-      ]
-    ]
-  }) as unknown as Plugin;
+      rehypePlugins: [
+        rehypePluginSlug,
+        [
+          rehypePluginAutolinkHeadings,
+          {
+            properties: {
+              class: 'header-anchor'
+            },
+            content: {
+              type: 'text',
+              value: '#'
+            }
+          }
+        ],
+        rehypePluginPreWrapper,
+        [
+          rehypePluginShiki,
+          { highlighter: await shiki.getHighlighter({ theme: 'nord' }) }
+        ]
+      ],
+      jsxRuntime: 'automatic',
+      development: true
+    })
+  } as unknown as Plugin;
 }
