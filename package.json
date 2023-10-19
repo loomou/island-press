@@ -76,6 +76,7 @@
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "3",
     "remark-mdx-frontmatter": "^3.0.0",
+    "sass": "^1.69.4",
     "shiki": "^0.14.5",
     "unified": "^11.0.3",
     "unocss": "^0.56.5",
