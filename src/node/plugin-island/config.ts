@@ -1,5 +1,5 @@
 import { normalizePath, Plugin } from 'vite';
-import { SiteConfig } from '../../shared/types';
+import { SiteConfig } from 'shared/types';
 import { relative, join } from 'path';
 import { PACKAGE_ROOT } from '../constants';
 
