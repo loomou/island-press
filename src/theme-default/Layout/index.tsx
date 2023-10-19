@@ -1,6 +1,7 @@
 import 'uno.css';
 import '../styles/base.css';
 import '../styles/vars.css';
+import '../styles/doc.css';
 import { usePageData } from '@runtime';
 import { Nav } from '../components/Nav';
 import { HomeLayout } from './HomeLayout';
@@ -21,7 +22,13 @@ export function Layout() {
   return (
     <div>
       <Nav />
-      <div>{getContent()}</div>
+      <section
+        style={{
+          paddingTop: 'var(--island-nav-height)'
+        }}
+      >
+        {getContent()}
+      </section>
     </div>
   );
 }
