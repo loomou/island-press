@@ -2,8 +2,6 @@ import Slugger from 'github-slugger';
 import { visit } from 'unist-util-visit';
 import { parse } from 'acorn';
 
-const slugger = new Slugger();
-
 interface TocItem {
   id: string;
   text: string;
@@ -19,6 +17,7 @@ interface ChildNode {
 export const remarkPluginToc = () => {
   return (tree) => {
     const toc: TocItem[] = [];
+    const slugger = new Slugger();
     visit(tree, 'heading', (node) => {
       if (!node.depth || !node.children) {
         return;

@@ -8,7 +8,6 @@ export async function createDevServer(
   restartServer: () => Promise<void>
 ) {
   const config = await resolveConfig(root, 'serve', 'development');
-  console.log(config);
   return createViteDevServer({
     root,
     plugins: await createVitePlugins(config, restartServer, false, true),

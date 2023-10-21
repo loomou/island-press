@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsup --watch",
     "build": "tsup",
+    "dev": "island dev docs",
     "test:init": "vitest run",
     "prepare:e2e": "tsx scripts/prepare-e2e.ts",
     "test:e2e": "playwright test",

@@ -6,6 +6,7 @@ import { SiteConfig } from 'shared/types';
 import { createPluginMdx } from './plugin-mdx';
 import pluginUnocss from 'unocss/vite';
 import unocssOptions from './unocssOptions';
+import { pluginMdxHMR } from './plugin-mdx/pluginMdxHMR';
 
 export async function createVitePlugins(
   config: SiteConfig,
@@ -18,13 +19,14 @@ export async function createVitePlugins(
     pluginUnocss(unocssOptions),
     pluginIndexHtml(),
     pluginReact({
-      jsxRuntime: 'automatic',
-      include: /\.(mdx|js|jsx|ts|tsx)$/
+      jsxRuntime: 'automatic'
+      // include: /\.(mdx|js|jsx|ts|tsx)$/
     }),
     pluginConfig(config, restartServer),
     pluginRoutes({
       root: config.root,
       isSSR
-    })
+    }),
+    pluginMdxHMR()
   ];
 }
