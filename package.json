@@ -30,6 +30,9 @@
     "@iconify-json/carbon": "^1.1.21",
     "@loadable/component": "^5.15.3",
     "@playwright/test": "1.26.1",
+    "@types/babel__core": "^7.20.3",
+    "@types/babel__helper-plugin-utils": "^7.10.2",
+    "@types/babel__traverse": "^7.20.3",
     "@types/fs-extra": "^11.0.2",
     "@types/hast": "^3.0.2",
     "@types/lodash-es": "^4.17.10",
@@ -62,6 +65,10 @@
     "vitest": "^0.34.6"
   },
   "dependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/helper-plugin-utils": "^7.22.5",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/traverse": "^7.23.2",
     "@mdx-js/rollup": "^2.3.0",
     "@vitejs/plugin-react": "^4.1.0",
     "acorn": "^8.10.0",
