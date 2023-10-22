@@ -13,7 +13,6 @@ export interface RenderResult {
 export async function render(pagePath: string) {
   const pageData = await initPageData(pagePath);
   const { clearIslandsData, data } = await import('./jsx-runtime');
-  const { islandProps, islandToPathMap } = data;
   clearIslandsData();
   const appHtml = renderToString(
     <DataContext.Provider value={pageData}>
@@ -22,6 +21,7 @@ export async function render(pagePath: string) {
       </StaticRouter>
     </DataContext.Provider>
   );
+  const { islandProps, islandToPathMap } = data;
   return {
     appHtml,
     islandProps,
