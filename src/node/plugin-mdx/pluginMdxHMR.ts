@@ -1,6 +1,11 @@
 import { MD_REGEX } from '../constants';
 import { Plugin } from 'vite';
 
+interface MessageData {
+  filePath: string;
+  changeKey: string;
+}
+
 export const runtimePublicPath = '/@react-refresh';
 
 const header = `
@@ -67,6 +72,12 @@ function validateRefreshBoundaryAndEnqueueUpdates(prevExports, nextExports) {
       if (typeof value === 'object' && value.hasOwnProperty('$$typeof')) {
         return prevExports[key] === nextExports[key];
       }
+      if (!isEqual(prevExports[key], nextExports[key])) {
+        import.meta.hot.send('mdx-change', {
+          filePath: import.meta.url,
+          changeKey: key.toString()
+        })
+      }
       return true;
     }
   );
@@ -75,7 +86,8 @@ function validateRefreshBoundaryAndEnqueueUpdates(prevExports, nextExports) {
   } else {
     return 'Could not Fast Refresh. Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports';
   }
-}`.replace(/\n+/g, '');
+}`;
+// .replace(/\n+/g, '');
 
 const footer = `
 var _c;
@@ -109,6 +121,11 @@ export function pluginMdxHMR(): Plugin {
   return {
     name: 'vite-plugin-mdx-hmr',
     apply: 'serve',
+    configureServer(server) {
+      server.ws.on('mdx-change', (data: MessageData) => {
+        server.ws.send('mdx-changed:' + data.changeKey, data);
+      });
+    },
     async transform(code, id) {
       if (MD_REGEX.test(id)) {
         if (!code.includes('import.meta.hot')) {

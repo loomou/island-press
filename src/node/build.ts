@@ -5,7 +5,7 @@ import { pathToFileURL } from 'url';
 import fs from 'fs-extra';
 import type { InlineConfig } from 'vite';
 import type { RollupOutput } from 'rollup';
-import { SiteConfig } from '../shared/types';
+import { SiteConfig } from 'shared/types';
 import { createVitePlugins } from './vitePlugins';
 import { Route } from './plugin-routes';
 
@@ -30,7 +30,7 @@ export async function bundle(root: string, config: SiteConfig) {
     root,
     plugins: await createVitePlugins(config, undefined, isServer),
     ssr: {
-      noExternal: ['react-router-dom']
+      noExternal: ['react-router-dom', 'lodash-es']
     },
     build: {
       minify: false,
@@ -73,7 +73,7 @@ export async function renderPage(
   return Promise.all(
     routes.map(async (route) => {
       const routePath = route.path;
-      const appHtml = render(routePath);
+      const appHtml = await render(routePath);
       const html = `
 <!DOCTYPE html>
 <html lang="zh">
