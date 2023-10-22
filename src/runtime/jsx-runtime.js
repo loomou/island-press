@@ -28,3 +28,8 @@ export const jsx = (...args) => internalJsx(originJsx, ...args);
 export const jsxs = (...args) => internalJsx(originJsxs, ...args);
 
 export const Fragment = jsxRuntime.Fragment;
+
+export const clearIslandsData = () => {
+  data.islandProps = [];
+  data.islandToPathMap = {};
+};
