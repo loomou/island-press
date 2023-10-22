@@ -1,24 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Header } from 'shared/types';
 
-export function useHeaders(initHeaders: Header[]) {
-  const [headers, setHeaders] = useState(initHeaders);
+export function useHMR(initData) {
+  const [data, setData] = useState(initData);
 
   useEffect(() => {
-    console.log(import.meta);
     if (import.meta.env.DEV) {
       import.meta.hot.on(
-        'mdx-changed:toc',
-        ({ filePath }: { filePath: string }) => {
+        'mdx-changed',
+        ({ filePath, changeKey }: { filePath: string; changeKey: string }) => {
           const pathName = new URL(filePath).pathname;
           import(/* @vite-ignore */ `${pathName}?import&t=${Date.now()}`).then(
             (module) => {
-              setHeaders(module.toc);
+              setData(module[changeKey]);
             }
           );
         }
       );
     }
   });
-  return headers;
+
+  return data;
 }

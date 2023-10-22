@@ -2,7 +2,7 @@ import { Header } from 'shared/types';
 import { useRef, useEffect } from 'react';
 import { bindingAsideScroll } from '../../logic/asideScroll';
 import { scrollToTarget } from '../../logic/asideScroll';
-import { useHeaders } from '../../logic/useHeaders';
+import { useHMR } from '../../logic/useHMR';
 
 interface AsideProps {
   headers: Header[];
@@ -10,7 +10,7 @@ interface AsideProps {
 
 export function Aside(props: AsideProps) {
   const { headers: rawHeaders = [] } = props;
-  const headers = useHeaders(rawHeaders);
+  const headers = useHMR(rawHeaders);
   const hasOutline = headers.length > 0;
   const markerRef = useRef<HTMLDivElement>(null);
 

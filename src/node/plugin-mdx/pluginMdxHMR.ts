@@ -123,7 +123,7 @@ export function pluginMdxHMR(): Plugin {
     apply: 'serve',
     configureServer(server) {
       server.ws.on('mdx-change', (data: MessageData) => {
-        server.ws.send('mdx-changed:' + data.changeKey, data);
+        server.ws.send('mdx-changed', data);
       });
     },
     async transform(code, id) {

@@ -20,7 +20,6 @@ export async function createVitePlugins(
     pluginIndexHtml(),
     pluginReact({
       jsxRuntime: 'automatic'
-      // include: /\.(mdx|js|jsx|ts|tsx)$/
     }),
     pluginConfig(config, restartServer),
     pluginRoutes({
