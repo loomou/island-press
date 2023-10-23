@@ -9,24 +9,29 @@ const setClassList = (isDark = false) => {
   }
 };
 
-const updateAppearance = () => {
-  const userPreference = localStorage.getItem(APPEARANCE_KEY);
-  setClassList(userPreference === 'dark');
+export const updateAppearance = () => {
+  if (typeof localStorage !== 'undefined') {
+    const userPreference = localStorage.getItem(APPEARANCE_KEY);
+    setClassList(userPreference === 'dark');
+  }
 };
 
 if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+  updateAppearance();
   window.addEventListener('storage', updateAppearance);
 }
 
-export function toggle() {
-  const classList = document.documentElement.classList;
-  if (classList.contains('dark')) {
-    setClassList(false);
-    // 本地状态存储
-    localStorage.setItem(APPEARANCE_KEY, 'light');
-  } else {
-    setClassList(true);
-    // 本地状态存储
-    localStorage.setItem(APPEARANCE_KEY, 'dark');
-  }
-}
+export const getToggle = () => {
+  updateAppearance();
+
+  return function toggle() {
+    const classList = document.documentElement.classList;
+    if (classList.contains('dark')) {
+      setClassList(false);
+      localStorage.setItem(APPEARANCE_KEY, 'light');
+    } else {
+      setClassList(true);
+      localStorage.setItem(APPEARANCE_KEY, 'dark');
+    }
+  };
+};

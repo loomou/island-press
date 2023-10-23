@@ -1,5 +1,5 @@
 import styles from './index.module.scss';
-import { toggle } from '../../logic/toggleAppearance';
+import { getToggle } from '../../logic/toggleAppearance';
 
 interface SwitchProps {
   onClick?: () => void;
@@ -24,7 +24,10 @@ export function Switch(props: SwitchProps) {
   );
 }
 
-export function SwitchAppearance() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function SwitchAppearance(_: { __island?: boolean | undefined }) {
+  const toggle = getToggle();
+
   return (
     <Switch onClick={toggle}>
       <div className={styles.sun}>

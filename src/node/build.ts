@@ -83,7 +83,7 @@ async function buildIslands(
     ${Object.entries(islandPathToMap)
       .map(
         ([islandName, islandPath]) =>
-          `import { ${islandName} } from '${islandPath}'`
+          `import { ${islandName} } from '${islandPath}';`
       )
       .join('')}
 window.ISLANDS = { ${Object.keys(islandPathToMap).join(', ')} };
@@ -182,6 +182,17 @@ export async function renderPage(
     ${styleAssets
       .map((item) => `<link rel="stylesheet" href="/${item.fileName}">`)
       .join('\n')}
+    <script>
+   if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+    const userPreference = localStorage.getItem('appearance');
+    const classList = document.documentElement.classList;
+    if (userPreference === 'dark') {
+      classList.add('dark');
+    } else {
+      classList.remove('dark');
+    }
+    } 
+    </script>
     <script type="importmap">
       {
         "imports": {
@@ -196,7 +207,7 @@ export async function renderPage(
     <div id="root">${appHtml}</div>
     <script type="module">${islandsCode};</script>
     <script type="module" src="/${clientChunk?.fileName}"></script>
-    <script id="island-props">${JSON.stringify(islandProps)};</script
+    <script id="island-props">${JSON.stringify(islandProps)}</script>
   </body>
 </html>`.trim();
       const fileName = routePath.endsWith('/')

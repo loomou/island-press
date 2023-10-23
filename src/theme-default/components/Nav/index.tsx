@@ -41,7 +41,7 @@ export function Nav() {
           </div>
 
           <div before="menu-item-before" flex="~">
-            <SwitchAppearance />
+            <SwitchAppearance __island />
           </div>
 
           <div
