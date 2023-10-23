@@ -86,8 +86,7 @@ function validateRefreshBoundaryAndEnqueueUpdates(prevExports, nextExports) {
   } else {
     return 'Could not Fast Refresh. Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports';
   }
-}`;
-// .replace(/\n+/g, '');
+}`.replace(/\n+/g, '');
 
 const footer = `
 var _c;

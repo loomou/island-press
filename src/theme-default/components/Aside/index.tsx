@@ -10,7 +10,7 @@ interface AsideProps {
 
 export function Aside(props: AsideProps & PropsWithIsland) {
   const { headers: rawHeaders = [] } = props;
-  const headers = useHMR(rawHeaders);
+  const headers = useHMR(rawHeaders, 'toc');
   const hasOutline = headers.length > 0;
   const markerRef = useRef<HTMLDivElement>(null);
 

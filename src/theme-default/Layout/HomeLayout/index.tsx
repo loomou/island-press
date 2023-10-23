@@ -5,7 +5,7 @@ import { useHMR } from '../../logic/useHMR';
 
 export function HomeLayout() {
   const { frontmatter } = usePageData();
-  const latestFrontmatter = useHMR(frontmatter);
+  const latestFrontmatter = useHMR(frontmatter, 'frontmatter');
   return (
     <div>
       <HomeHero hero={latestFrontmatter.hero} />

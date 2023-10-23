@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { DataContext } from './hooks';
 import { initPageData } from './initPageData';
+import { HelmetProvider } from 'react-helmet-async';
 
 export interface RenderResult {
   appHtml: string;
@@ -10,16 +11,18 @@ export interface RenderResult {
   islandToPathMap: Record<string, string>;
 }
 
-export async function render(pagePath: string) {
+export async function render(pagePath: string, helmetContext: object) {
   const pageData = await initPageData(pagePath);
   const { clearIslandsData, data } = await import('./jsx-runtime');
   clearIslandsData();
   const appHtml = renderToString(
-    <DataContext.Provider value={pageData}>
-      <StaticRouter location={pagePath}>
-        <App />
-      </StaticRouter>
-    </DataContext.Provider>
+    <HelmetProvider context={helmetContext}>
+      <DataContext.Provider value={pageData}>
+        <StaticRouter location={pagePath}>
+          <App />
+        </StaticRouter>
+      </DataContext.Provider>
+    </HelmetProvider>
   );
   const { islandProps, islandToPathMap } = data;
   return {

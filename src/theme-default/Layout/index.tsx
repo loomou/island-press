@@ -6,10 +6,11 @@ import { usePageData } from '@runtime';
 import { Nav } from '../components/Nav';
 import { HomeLayout } from './HomeLayout';
 import { DocLayout } from './DocLayout';
+import { Title } from '../components/Title';
 
 export function Layout() {
   const pageData = usePageData();
-  const { pageType } = pageData;
+  const { pageType, title } = pageData;
   const getContent = () => {
     if (pageType === 'home') {
       return <HomeLayout />;
@@ -21,6 +22,7 @@ export function Layout() {
   };
   return (
     <div>
+      <Title title={title} />
       <Nav />
       <section
         style={{
