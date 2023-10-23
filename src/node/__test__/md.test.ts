@@ -61,8 +61,10 @@ describe('Markdown compile cases', async () => {
       .use(remarkStringify);
 
     const result = remarkProcessor.processSync(mdContent);
-    expect(result.value.toString().replace(mdContent, ''))
-      .toMatchInlineSnapshot(`
+    expect(
+      result.value.toString().replace(mdContent, '')
+    ).toMatchInlineSnapshot(
+      `
         "
         export const toc = [
           {
@@ -81,7 +83,10 @@ describe('Markdown compile cases', async () => {
             \\"depth\\": 4
           }
         ];
+
+        export const title = 'h1';
         "
-      `);
+      `
+    );
   });
 });
