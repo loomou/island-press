@@ -1,0 +1,1 @@
+# Vite SSG framework based on islands arch
