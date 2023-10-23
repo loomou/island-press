@@ -6,6 +6,7 @@ import { usePageData } from '@runtime';
 import { Nav } from '../components/Nav';
 import { HomeLayout } from './HomeLayout';
 import { DocLayout } from './DocLayout';
+import { NotFoundLayout } from './NotFoundLayout';
 import { Title } from '../components/Title';
 
 export function Layout() {
@@ -17,7 +18,7 @@ export function Layout() {
     } else if (pageType === 'doc') {
       return <DocLayout />;
     } else {
-      return <div>404 页面</div>;
+      return <NotFoundLayout />;
     }
   };
   return (
