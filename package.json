@@ -2,7 +2,7 @@
   "name": "island-press",
   "version": "0.0.0",
   "description": "",
-  "main": "dis/index.js",
+  "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {

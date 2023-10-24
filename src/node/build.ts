@@ -37,6 +37,9 @@ export async function bundle(root: string, config: SiteConfig) {
   ): Promise<InlineConfig> => ({
     mode: 'production',
     root,
+    esbuild: {
+      jsx: 'preserve'
+    },
     plugins: await createVitePlugins(config, undefined, isServer),
     ssr: {
       noExternal: ['react-router-dom', 'lodash-es']
