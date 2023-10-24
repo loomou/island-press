@@ -46,7 +46,6 @@
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",
     "@commitlint/config-conventional": "^17.8.0",
-    "@loadable/component": "^5.15.3",
     "@playwright/test": "1.26.1",
     "@types/babel__core": "^7.20.3",
     "@types/babel__helper-plugin-utils": "^7.10.2",
@@ -98,6 +97,7 @@
     "@babel/preset-react": "^7.22.15",
     "@babel/traverse": "^7.23.2",
     "@iconify-json/carbon": "^1.1.21",
+    "@loadable/component": "^5.15.3",
     "@mdx-js/rollup": "^2.3.0",
     "@vitejs/plugin-react": "^4.1.0",
     "acorn": "^8.10.0",
