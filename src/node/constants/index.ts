@@ -32,3 +32,5 @@ export const EXTERNALS = [
   'react-dom/client',
   'react/jsx-runtime'
 ];
+
+export const TS_REGEX = /(c|m)?tsx?$/;

@@ -44,6 +44,18 @@ export function pluginConfig(
     config() {
       return {
         root: PACKAGE_ROOT,
+        optimizeDeps: {
+          include: [
+            'react',
+            'react-dom',
+            'react-dom/client',
+            'react-router-dom',
+            'react/jsx-runtime',
+            'react-helmet-async',
+            'lodash-es'
+          ],
+          exclude: ['@runtime']
+        },
         resolve: {
           alias: {
             '@runtime': join(PACKAGE_ROOT, 'src', 'runtime', 'index.ts')
