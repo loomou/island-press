@@ -15,6 +15,7 @@ module.exports = {
         'revert',
         'test',
         'release',
+        'docs'
       ]],
   },
 };

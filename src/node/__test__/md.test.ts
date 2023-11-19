@@ -48,7 +48,7 @@ describe('Markdown compile cases', async () => {
 
 ## h2 \`code\`
 
-### h3 [link](https://islandjs.dev)
+### h3 [link](https://baidu.com)
 
 #### h4 'xxx'
 
@@ -61,32 +61,29 @@ describe('Markdown compile cases', async () => {
       .use(remarkStringify);
 
     const result = remarkProcessor.processSync(mdContent);
-    expect(
-      result.value.toString().replace(mdContent, '')
-    ).toMatchInlineSnapshot(
-      `
-        "
-        export const toc = [
-          {
-            \\"id\\": \\"h2-code\\",
-            \\"text\\": \\"h2 code\\",
-            \\"depth\\": 2
-          },
-          {
-            \\"id\\": \\"h3-link\\",
-            \\"text\\": \\"h3 link\\",
-            \\"depth\\": 3
-          },
-          {
-            \\"id\\": \\"h4-xxx\\",
-            \\"text\\": \\"h4 'xxx'\\",
-            \\"depth\\": 4
-          }
-        ];
+    expect(result.value.toString().replace(mdContent, ''))
+      .toMatchInlineSnapshot(`
+      "
+      export const toc = [
+        {
+          \\"id\\": \\"h2-code\\",
+          \\"text\\": \\"h2 code\\",
+          \\"depth\\": 2
+        },
+        {
+          \\"id\\": \\"h3-link\\",
+          \\"text\\": \\"h3 link\\",
+          \\"depth\\": 3
+        },
+        {
+          \\"id\\": \\"h4-xxx\\",
+          \\"text\\": \\"h4 'xxx'\\",
+          \\"depth\\": 4
+        }
+      ];
 
-        export const title = 'h1';
-        "
-      `
-    );
+      export const title = 'h1';
+      "
+    `);
   });
 });
