@@ -49,7 +49,7 @@ function getUserConfigPath(root: string) {
 
 export function resolveSiteData(userConfig: UserConfig): UserConfig {
   return {
-    title: userConfig.title || 'Island.js',
+    title: userConfig.title || 'IslandPress',
     description: userConfig.description || 'SSG Framework',
     themeConfig: userConfig.themeConfig || {},
     vite: userConfig.vite || {}

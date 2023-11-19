@@ -5,6 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  islandjs:
+  island-press:
     specifier: ../../..
     version: link:../../..
